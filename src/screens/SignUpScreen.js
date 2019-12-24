@@ -6,6 +6,7 @@ import { Context as AuthContext } from "../context/authContext";
 
 const SignUpScreen = ({ navigation }) => {
   const { state, signUp } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -13,6 +14,14 @@ const SignUpScreen = ({ navigation }) => {
       <Spacer>
         <Text h3>Sign Up for Tracker</Text>
       </Spacer>
+      <Input
+        label='Username'
+        value={username}
+        onChangeText={setUsername}
+        autoCapitalize='none'
+        autoCorrect={false}
+      />
+      <Spacer />
       <Input
         label='Email'
         value={email}
@@ -33,7 +42,10 @@ const SignUpScreen = ({ navigation }) => {
         <Text style={styles.errorMessage}>{state.errorMessage}</Text>
       ) : null}
       <Spacer>
-        <Button title='Sign Up' onPress={() => signUp({ email, password })} />
+        <Button
+          title='Sign Up'
+          onPress={() => signUp({ username, email, password })}
+        />
       </Spacer>
     </View>
   );

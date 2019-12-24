@@ -15,12 +15,17 @@ const authReducer = (state, action) => {
 };
 
 // Functions to change the Auth state
-const signUp = dispatch => async ({ email, password }) => {
+const signUp = dispatch => async ({ username, email, password }) => {
   try {
-    const response = await trackerAPI.post("/signup", { email, password });
+    const response = await trackerAPI.post("/auth/local/register", {
+      username,
+      email,
+      password
+    });
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: "sign_up", payload: response.data.token });
     navigate("TrackList");
+    console.log(response);
   } catch (error) {
     dispatch({
       type: "add_error",
