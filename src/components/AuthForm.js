@@ -6,6 +6,7 @@ import Spacer from "./Spacer";
 const AuthForm = ({ headerText, errorMessage, onSubmit, buttonText }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   return (
     <View>
@@ -13,22 +14,32 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, buttonText }) => {
         <Text h3>{headerText}</Text>
       </Spacer>
       {buttonText === "Sign Up" ? (
+        <View>
+          <Input
+            label='Username'
+            value={username}
+            onChangeText={setUsername}
+            autoCapitalize='none'
+            autoCorrect={false}
+          />
+          <Spacer />
+          <Input
+            label='Email'
+            value={email}
+            onChangeText={setEmail}
+            autoCapitalize='none'
+            autoCorrect={false}
+          />
+        </View>
+      ) : (
         <Input
-          label='Username'
-          value={username}
-          onChangeText={setUsername}
+          label='Username or Email'
+          value={identifier}
+          onChangeText={setIdentifier}
           autoCapitalize='none'
           autoCorrect={false}
         />
-      ) : null}
-      <Spacer />
-      <Input
-        label='Email'
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize='none'
-        autoCorrect={false}
-      />
+      )}
       <Spacer />
       <Input
         label='Password'
@@ -44,7 +55,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, buttonText }) => {
       <Spacer>
         <Button
           title={buttonText}
-          onPress={() => onSubmit({ username, email, password })}
+          onPress={() => onSubmit({ username, email, password, identifier })}
         />
       </Spacer>
     </View>
