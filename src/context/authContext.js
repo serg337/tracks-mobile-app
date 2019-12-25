@@ -22,10 +22,9 @@ const signUp = dispatch => async ({ username, email, password }) => {
       email,
       password
     });
-    await AsyncStorage.setItem("token", response.data.token);
-    dispatch({ type: "sign_up", payload: response.data.token });
+    await AsyncStorage.setItem("token", response.data.jwt);
+    dispatch({ type: "sign_up", payload: response.data.jwt });
     navigate("TrackList");
-    console.log(response);
   } catch (error) {
     dispatch({
       type: "add_error",
