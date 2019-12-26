@@ -4,6 +4,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Provider as AuthProvider } from "./src/context/authContext";
 import { Provider as LocationProvider } from "./src/context/locationContext";
+import { Provider as TrackProvider } from "./src/context/trackContext";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import AccountScreen from "./src/screens/AccountScreen";
 import SignInScreen from "./src/screens/SignInScreen";
@@ -34,10 +35,12 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <LocationProvider>
-      <AuthProvider>
-        <App ref={navigator => setNavigator(navigator)} />
-      </AuthProvider>
-    </LocationProvider>
+    <TrackProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <App ref={navigator => setNavigator(navigator)} />
+        </AuthProvider>
+      </LocationProvider>
+    </TrackProvider>
   );
 };
