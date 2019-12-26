@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-navigation";
 import { Context as AuthContext } from "../context/authContext";
 import { Button } from "react-native-elements";
