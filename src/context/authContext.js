@@ -2,6 +2,7 @@ import { AsyncStorage } from "react-native";
 import createDataContext from "./createDataContext";
 import trackerAPI from "../api/tracker";
 import { navigate } from "../navigationRef";
+import { AuthSession } from "expo";
 
 const authReducer = (state, action) => {
   switch (action.type) {
